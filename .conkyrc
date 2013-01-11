@@ -1,0 +1,95 @@
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 1
+
+imlib_cache_size 0
+double_buffer yes
+no_buffers yes
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Ubuntu:size=8
+override_utf8_locale yes
+text_buffer_size 2048
+
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+#own_window_argb_visual yes
+#own_window_argb_value 100
+
+alignment br
+gap_x 0
+gap_y -10
+minimum_size 190 180
+
+
+default_bar_size 60 8
+
+#########################
+# - Graphics settings - #
+#########################
+draw_shades no
+
+default_color efefef
+default_shade_color 1d1d1d
+color0 ffffff
+color1 ffffff
+color2 ffffff
+
+
+#lua_load ~/.conky/conkybg.lua
+#lua_draw_hook_pre conky_draw_bg
+
+TEXT
+
+#${voffset 7}${alignc 3}${font Ubuntu:style=Bold:size=9}${time %a - %d %B}${font} ${execi 2000 /home/live/.conkycolors/scripts/conkyForecast.py}
+
+${voffset -3}${goto 40}${font Ubuntu:style=Bold:size=9}SYSTEM: ${font}
+
+${goto 40}CPU1: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu1}%${font} ${alignr 25}${font Ubuntu:style=Bold:size=9}${color1}${execi 30 sensors | grep 'Core 0' | cut -c15-16}°C${color}${font}  
+${goto 40}CPU2: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu2}%${font} ${alignr 25}${font Ubuntu:style=Bold:size=9}${color1}${execi 30 sensors | grep 'Core 1' | cut -c15-16}°C${color}${font}  
+${goto 40}CPU3: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu3}%${font} ${alignr 25}${font Ubuntu:style=Bold:size=9}${color1}${execi 30 sensors | grep 'Core 2' | cut -c15-16}°C${color}${font}  
+${goto 40}CPU4: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu4}%${font} ${alignr 25}${font Ubuntu:style=Bold:size=9}${color1}${execi 30 sensors | grep 'Core 3' | cut -c15-16}°C${color}${font}  
+
+${goto 40}RAM: ${font Ubuntu:style=Bold:size=8}${memperc}%${font} 
+${goto 40}F: ${color2}${font Ubuntu:style=Bold:size=8}${memeasyfree}${font} ${color} U: ${color2}${font Ubuntu:style=Bold:size=8}${mem}${color}${font} 
+
+${goto 40}${font Ubuntu:style=Bold:size=9}NETZWERK: ${font}
+
+${if_up wlan0}
+${voffset -10}${goto 40}${voffset -6}Up: ${font Ubuntu:style=Bold:size=9}${color1}${upspeed wlan0}${color}${font} ${alignr 15}
+${goto 40}Insgesamt: ${font Ubuntu:style=Bold:size=8}${color2}${totalup wlan0}${color}${font} 
+
+${goto 40}Down: ${font Ubuntu:style=Bold:size=9}${color1}${downspeed wlan0}${color}${font} ${alignr 15}
+${goto 40}Insgesamt: ${font Ubuntu:style=Bold:size=8}${color2}${totaldown wlan0}${color}${font} 
+
+${goto 40}Signal: ${font Ubuntu:style=Bold:size=9}${color1}${wireless_link_qual wlan0}%${color}${font} ${alignr 15}
+
+# |--ETH0
+${else}${if_up eth0}
+${voffset -13}${color0}${font VariShapes Solid:size=14}q${font}${color}${goto 40}${voffset -6}Up: ${font Ubuntu:style=Bold:size=9}${color1}${upspeed eth0}${color}${font} ${alignr 15}${color2}${upspeedgraph eth0 8,60 92B6F1 CCDFFF}${color}
+${goto 40}Insgesamt: ${color2}${totalup eth0}${color}
+${voffset -2}${color0}${font VariShapes Solid:size=14}Q${font}${color}${goto 40}${voffset -6}Down: ${font Ubuntu:style=Bold:size=9}${color1}${downspeed eth0}${color}${font} ${alignr 15}${color2}${downspeedgraph eth0 8,60 92B6F1 CCDFFF}${color}
+${goto 40}Insgesamt: ${color2}${totaldown eth0}${color}
+${voffset -2}${color0}${font Poky:size=13}w${font}${color}${goto 40}${voffset -4}Lokale IP: ${alignr 15}${color2}${addr eth0}${color}
+${goto 40}Öffentliche IP: ${alignr 15}${color2}${execi 10800 ~/.conkycolors/bin/conkyIp}${color}
+# |--PPP0
+${endif}${else}${if_up ppp0}
+${voffset -13}${color0}${font VariShapes Solid:size=14}q${font}${color}${goto 40}${voffset -6}Up: ${font Ubuntu:style=Bold:size=9}${color1}${upspeed ppp0}${color}${font} ${alignr 15}${color2}${upspeedgraph ppp0 8,60 92B6F1 CCDFFF}${color}
+${goto 40}Insgesamt: ${color2}${totalup ppp0}${color}
+${voffset -2}${color0}${font VariShapes Solid:size=14}Q${font}${color}${goto 40}${voffset -6}Down: ${font Ubuntu:style=Bold:size=9}${color1}${downspeed ppp0}${color}${font} ${alignr 15}${color2}${downspeedgraph ppp0 8,60 92B6F1 CCDFFF}${color}
+${goto 40}Insgesamt: ${color2}${totaldown ppp0}${color}
+${voffset -2}${color0}${font Poky:size=13}w${font}${color}${goto 40}${voffset -4}Lokale IP: ${alignr 15}${color2}${addr ppp0}${color}
+${endif}${else}${voffset 4}${color0}${font PizzaDude Bullets:size=12}4${font}${color}${goto 40}Netzwerk nicht verfügbar${endif}${endif}${image ~/.conky/BG.png -p 10,0 -s 181x316}
