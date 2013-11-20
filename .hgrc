@@ -1,0 +1,6 @@
+[ui]
+username = Timothy Lee <marlboromoo@gmail.com>
+verbose = True
+
+[web]
+cacerts=

@@ -1,0 +1,12 @@
+[user]
+	name = Timothy Lee
+        email = marlboromoo@gmail.com
+
+[http]
+        #sslVerify = false
+        proxy = http://172.19.12.101:9999
+
+[url "https://github.com/"]
+        insteadOf = git://github.com/
+[color]
+	ui = true
