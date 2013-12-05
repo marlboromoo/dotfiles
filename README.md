@@ -26,7 +26,7 @@ find  $(echo 'import site; print site.getsitepackages()[0]' | python ) | grep -i
 ```
 cd ~
 git clone https://github.com/marlboromoo/dot_file.git
-for file in .conkyrc .conky .tmux.conf .tmuxline.conf; do
+for file in $(ls -a dot_file/ | grep '^\.[a-z]'); do
     mv $file{,.bak} 2>/dev/null
     ln -s dot_file/$file ./
 done
