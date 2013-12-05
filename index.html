@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Dotfiles by marlboromoo</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Dotfiles</h1>
+        <h2>Just marlboromoo's dot files.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/marlboromoo/dotfiles/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/marlboromoo/dotfiles/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/marlboromoo/dotfiles" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a name="marlboromoos-dot-files" class="anchor" href="#marlboromoos-dot-files"><span class="octicon octicon-link"></span></a>Marlboromoo's dot files</h1>
+
+<p>Just marlboromoo's dot files.</p>
+
+<pre><code>    ___  ___           _ _                    ___  ___
+    |  \/  |          | | |                   |  \/  |
+    | .  . | __ _ _ __| | |__   ___  _ __ ___ | .  . | ___   ___
+    | |\/| |/ _` | '__| | '_ \ / _ \| '__/ _ \| |\/| |/ _ \ / _ \
+    | |  | | (_| | |  | | |_) | (_) | | | (_) | |  | | (_) | (_) |
+    \_|  |_/\__,_|_|  |_|_.__/ \___/|_|  \___/\_|  |_/\___/ \___/ 's dot files
+
+</code></pre>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a name="dependency" class="anchor" href="#dependency"><span class="octicon octicon-link"></span></a>Dependency</h3>
+
+<pre><code>#. conky
+sudo aptitude install ttf-ubuntu-font-family hddtemp curl lm-sensors conky-all
+
+#. powerline
+sudo easy_install https://github.com/Lokaltog/powerline/archive/develop.zip
+find  $(echo 'import site; print site.getsitepackages()[0]' | python ) | grep -i powerline.conf$
+</code></pre>
+
+<h3>
+<a name="dot-files" class="anchor" href="#dot-files"><span class="octicon octicon-link"></span></a>Dot files</h3>
+
+<pre><code>cd ~
+git clone https://github.com/marlboromoo/dotfiles.git
+for file in $(ls -a dotfiles/ | grep '^\.[a-z]'); do
+    mv $file{,.bak} 2&gt;/dev/null
+    ln -s dotfiles/$file ./
+done
+</code></pre>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
