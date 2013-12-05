@@ -25,10 +25,10 @@ find  $(echo 'import site; print site.getsitepackages()[0]' | python ) | grep -i
 ### Dot files
 ```
 cd ~
-git clone https://github.com/marlboromoo/dot_file.git
-for file in $(ls -a dot_file/ | grep '^\.[a-z]'); do
+git clone https://github.com/marlboromoo/dotfiles.git
+for file in $(ls -a dotfiles/ | grep '^\.[a-z]'); do
     mv $file{,.bak} 2>/dev/null
-    ln -s dot_file/$file ./
+    ln -s dotfiles/$file ./
 done
 ```
 
