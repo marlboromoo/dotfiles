@@ -26,7 +26,7 @@ find  $(echo 'import site; print site.getsitepackages()[0]' | python ) | grep -i
 ```
 cd ~
 git clone https://github.com/marlboromoo/dotfiles.git
-for file in $(ls -a dotfiles/ | grep '^\.[a-z]'); do
+for file in $(ls -a dotfiles/ | grep '^\.[a-z]' | grep -v .git$); do
     mv $file{,.bak} 2>/dev/null
     ln -s dotfiles/$file ./
 done
